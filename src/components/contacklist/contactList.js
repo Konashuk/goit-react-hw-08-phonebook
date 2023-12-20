@@ -14,10 +14,10 @@ export const ContactList = () => {
   return (
     <List>
       {visibleContacts &&
-        visibleContacts.map(({ id, name, phone }) => {
+        visibleContacts.map(({ id, name, number }) => {
           return (
             <Item key={id}>
-              {`${name}: ${phone}`}
+              {`${name}: ${number}`}
               <Button onClick={() => updateCont(id)}>Delete</Button>
             </Item>
           );

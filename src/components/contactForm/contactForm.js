@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 
 const phonebookSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Too Short!').required('Required'),
-  phone: Yup.string()
+  number: Yup.string()
     .matches(
       /^\d{7}$/,
       'The phone number must contain exactly 7 digits, and be a number'
@@ -20,7 +20,10 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handelForm = value => {
-    if (dataContacts.some(contact => contact.name === value.name)) {
+    if (
+      dataContacts &&
+      dataContacts.some(contact => contact.name === value.name)
+    ) {
       alert('This contact is in your phone book');
     } else {
       dispatch(addContacts(value));
@@ -31,7 +34,7 @@ export const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        phone: '',
+        number: '',
       }}
       validationSchema={phonebookSchema}
       onSubmit={(value, action) => {
@@ -47,8 +50,8 @@ export const ContactForm = () => {
         </Label>
         <Label>
           Number
-          <Field type="tel" name="phone" placeholder="2279126" />{' '}
-          <ErrorMas name="phone" component="span" />
+          <Field type="tel" name="number" placeholder="2279126" />{' '}
+          <ErrorMas name="number" component="span" />
         </Label>
         <Button type="submit">Add contact</Button>
       </Form>

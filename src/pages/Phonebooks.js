@@ -1,10 +1,10 @@
 import { ContactForm } from 'components/contactForm/contactForm';
-import { Filter } from './filter/filter';
-import { ContactList } from './contacklist/contactList';
+import { Filter } from '../components/filter/filter';
+import { ContactList } from '../components/contacklist/contactList';
 import { useSelector } from 'react-redux';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 
-export const Phonebooks = () => {
+export default function Phonebooks() {
   const dataContacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -17,7 +17,7 @@ export const Phonebooks = () => {
       <h2>Contacts</h2>
       {isLoading && !error && <b>Request in progress...</b>}
       <Filter />
-      {dataContacts.length > 0 && <ContactList />}
+      {dataContacts && <ContactList />}
     </div>
   );
-};
+}
