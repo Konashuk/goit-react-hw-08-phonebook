@@ -6,12 +6,11 @@ export const selectIsLoading = state => state.contacts.isLoading;
 
 export const selectError = state => state.contacts.error;
 
-export const selectStatusFilter = state => state.filters;
+export const selectStatusFilter = state => state.contacts.filters;
 
 export const selectFilterContacts = createSelector(
   [selectContacts, selectStatusFilter],
   (user, filters) => {
-    console.log(user);
     return user.filter(item =>
       item.name.toLowerCase().includes(filters.toLowerCase())
     );

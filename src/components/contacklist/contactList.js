@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { List, Button, Item } from './contactList.styled';
+import { List, Item } from './contactList.styled';
 import { selectFilterContacts } from 'redux/selectors';
 import { deleteContacts } from 'redux/operation';
+import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const ContactList = () => {
   const visibleContacts = useSelector(selectFilterContacts);
@@ -18,7 +20,13 @@ export const ContactList = () => {
           return (
             <Item key={id}>
               {`${name}: ${number}`}
-              <Button onClick={() => updateCont(id)}>Delete</Button>
+              <Button
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                onClick={() => updateCont(id)}
+              >
+                Delete
+              </Button>
             </Item>
           );
         })}

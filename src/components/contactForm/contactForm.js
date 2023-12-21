@@ -1,9 +1,10 @@
-import { Field, Form, Label, ErrorMas, Button } from './contactForm.styled';
+import { Field, Form, Label, ErrorMas } from './contactForm.styled';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from 'redux/operation';
 import { selectContacts } from 'redux/selectors';
 import * as Yup from 'yup';
+import { Button } from '@mui/material';
 
 const phonebookSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Too Short!').required('Required'),
@@ -53,7 +54,9 @@ export const ContactForm = () => {
           <Field type="tel" name="number" placeholder="2279126" />{' '}
           <ErrorMas name="number" component="span" />
         </Label>
-        <Button type="submit">Add contact</Button>
+        <Button type="submit" variant="outlined">
+          Add contact
+        </Button>
       </Form>
     </Formik>
   );
